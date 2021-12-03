@@ -11,3 +11,7 @@ class HomeTest(TestCase):
     def test_template(self):
         """Must use index.html"""
         self.assertTemplateUsed(self.response, 'index.html')
+
+    def test_subscription_link(self):
+        """Link for subscription must exist in homepage"""
+        self.assertContains(self.response, 'href="/inscricao/"')
