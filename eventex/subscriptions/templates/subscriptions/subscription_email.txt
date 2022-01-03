@@ -4,10 +4,10 @@ Muito obrigada por se inscrever no eventex
 
 Estes foram os dados que voce forneceu na inscricao:
 
-Nome: {{ name }}
-CPF: {{ cpf }}
-Email: {{ email }}
-Telefone: {{ phone }}
+Nome: {{ subscription.name }}
+CPF: {{ subscription.cpf }}
+Email: {{ subscription.email }}
+Telefone: {{ subscription.phone }}
 
 Ja ja entramos em contato pra terminar sua matrícula
 
