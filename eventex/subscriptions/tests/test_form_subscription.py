@@ -41,3 +41,8 @@ class SubscriptionFormTest(TestCase):
         form.is_valid()
         return form
 
+    def test_name_must_be_capitalized(self):
+        """Name must be capitalized"""
+        # GUILHERME VIOTTI -> Guilherme Viotti
+        form = self.make_validated_form(name='GUILHERME viotti')
+        self.assertEqual('Guilherme Viotti', form.cleaned_data['name'])
