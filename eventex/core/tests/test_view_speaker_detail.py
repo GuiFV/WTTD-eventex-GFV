@@ -5,7 +5,15 @@ from eventex.core.models import Speaker
 
 class SpeakerDetailGet(TestCase):
     def setUp(self):
+        Speaker.objects.create(
+            name='Grace Hopper',
+            slug='grace-hopper',
+            photo='http://hbn.link/hopper-pic',
+            website='http://hbn.link/hopper-site',
+            description='Programadora e almirante.'
+        )
         self.resp = self.client.get(r('speaker_detail', slug='grace-hopper'))
+
 
     def test_get(self):
         """GET should return status 200"""
@@ -30,3 +38,8 @@ class SpeakerDetailGet(TestCase):
         """Speaker must be in context"""
         speaker = self.resp.context['speaker']
         self.assertIsInstance(speaker, Speaker)
+
+class SpeakerDetailNotFound(TestCase):
+    def test_not_found(self):
+        response = self.client.get(r('speaker_detail', slug='not-found'))
+        self.assertEqual(404, response.status_code)
