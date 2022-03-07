@@ -1,6 +1,7 @@
 from django.db import models
 from django.shortcuts import resolve_url as r
 
+
 class Speaker(models.Model):
     name = models.CharField('nome', max_length=255)
     slug = models.SlugField('slug')
@@ -39,20 +40,15 @@ class Contact(models.Model):
         return self.value
 
 
+class Talk(models.Model):
+    title = models.CharField('título', max_length=200)
+    start = models.TimeField('início', blank=True, null=True)
+    description = models.TextField('descrição', blank=True)
+    speakers = models.ManyToManyField('Speaker', verbose_name='palestrantes', blank=True)
 
+    class Meta:
+        verbose_name = 'palestra'
+        verbose_name_plural = 'palestras'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def __str__(self):
+        return self.title
